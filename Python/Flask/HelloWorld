@@ -35,10 +35,78 @@ Then in the terminal, run the app by typing
 $ python3 app.py
 
 
-Which one should you use?
+--------------------------------
+Import the Flask-SQLAlchemy library.
+Connect to our database from our Flask application
+Set a configuration variable on our application by using the dictionary app.config. Flask-SQLAlchemy expects a configuration variable called, "SQLALCHEMY_DATABASE_URI".
+The first parameter is our dialect of choice. In our example here, we're using postgresql (you could also use sqlite, mysql, etc).
+Next is your username. (eg. postgres)
+You can optionally pass in a colon password. If you have a password for your username (e.g. abc )
+followed by an at sign
+The name of the host location where your database is located.
+For us our database server is located on our local machine. So we will just pass it in either localhost or 127.0.0.1.
+Specify which port you'd like to connect to by default, 5432 for database connections.
+Finally, followed by a slash and then specify the name of the particular database that exists on the server located at this host and connecting on this port, logging in with this username and password, and using this particular database system. You can see this represented in the image below.
 
 
+---------------------------------------
+Given an instance of the SQLAlchemy class from Flask-SQLAlchemy,
 
-In this course, we will be using the latter Python version in our workspaces.
+db = SQLAlchemy(app)
+db is an interface for interacting with our database
+db.Model lets us create and manipulate data models
+db.session lets us create and manipulate database transactions
 
-Both approaches to running your server are valid and neither way is better than the other.
+Declaring classes
+class MyModel(db.Model) will inherit from db.Model
+By inheriting from db.Model, we map from our classes to tables via SQLAlchemy ORM
+Defining columns
+Within our class, we declare attributes equal to db.Column(...)
+db.Column takes <datatype>, <primary_key?>, <constraint?>, <default?>
+Table naming
+By default, SQLAlchemy will pick the name of the table for you, setting it equal to the lower-case version of your class's name. Otherwise, we set the name of the table using __tablename__ = 'my_custom_table_name'.
+
+--------------------------------------------
+db.create_all() actually creates that tables based on the db.Model that was configured with the associated table
+
+-------------------------------------------------
+In Terminal
+
+INSERT INTO persons (name) VALUES ('Amy');
+INSERT INTO persons (name) VALUES ('Samu');
+INSERT INTO persons (name) VALUES ('Wolfgang');
+
+SELECT * from persons;
+In the App
+
+Getting the first name in the database and displaying it on screen
+
+@app.route('/')
+def index():
+  person = Person.query.first()
+  return 'Hello ' + person.name
+  
+In Terminal
+
+INSERT INTO persons (name) VALUES ('Amy');
+INSERT INTO persons (name) VALUES ('Samu');
+INSERT INTO persons (name) VALUES ('Wolfgang');
+
+SELECT * from persons;
+In the App
+
+Getting the first name in the database and displaying it on screen
+
+@app.route('/')
+def index():
+  person = Person.query.first()
+  return 'Hello ' + person.name
+
+
+$ python3
+>>> from flask_hello_app import Person, db
+>>> Person.query.all()
+>>> Person.query.first()
+>>> query = Person.query.filter(Person.name == 'Amy')
+>>> query.first()
+>>> query.all()
