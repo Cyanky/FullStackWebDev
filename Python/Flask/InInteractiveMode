@@ -1,0 +1,20 @@
+xjc@DESKTOP-S6I0E0I:~$ python3
+
+>>> exit()
+xjc@DESKTOP-S6I0E0I:~$ mv flask-hello-app.py flask_hello_app.py
+
+xjc@DESKTOP-S6I0E0I:~$ cd class-demos
+xjc@DESKTOP-S6I0E0I:~/class-demos$ mv flask-hello-app.py flask_hello_app.py //change the name to be read by python
+xjc@DESKTOP-S6I0E0I:~/class-demos$ python3
+
+import flask_hello_app
+/home/xjc/.local/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py:872: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  warnings.warn(FSADeprecationWarning(
+  // to silent this warning by: code in IDE
+ //app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+>>> import flask_hello_app
+>>> from flask_hello_app import Person
+>>> Person.query.all()
+[<Person 1>]
+>>> Person.query.first()
