@@ -1,0 +1,28 @@
+------------code in IDE-----------------
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://xjc:111070@localhost:5432/example'
+
+db = SQLAlchemy(app)
+
+class Person(db.Model):
+    __tablename__ = 'persons'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(), nullable=False)
+
+db.create_all()
+
+@app.route('/')
+def index():
+    person = Person.query.first()
+    return 'Hello ' + person.name
+---------------------
+example=> INSERT INTO persons (name) VALUES ( 'Jingchen' )
+INSERT 0 1
+example=> SELECT * from persons;
+//***don't forget to valid the constructions by semicolon
+
+xjc@DESKTOP-S6I0E0I:~$ FLASK_APP=~/class-demos/flask-hello-app.py FLASK_DEBUG=true flask run
+// to turn on debug mode to make it refresh everytime we made change in IDE
