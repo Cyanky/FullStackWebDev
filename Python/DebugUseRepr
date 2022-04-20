@@ -20,3 +20,8 @@ db.create_all()
 def index():
   person = Person.query.first()
   return 'Hello ' + person.name
+  -----------in python terminal-----------
+  >>> import flask_hello_app
+  >>> from flask_hello_app import Person
+>>> print(Person.query.first())
+<Person ID: 1, name: Jingchen>
