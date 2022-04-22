@@ -1,3 +1,20 @@
+
+Build a CRUD App with SQLAlchemy
+
+----------terminal commands executed to insert data
+$ create todoapp
+$ FLASK_APP=app.py FLASK_DEBUG=true flask run
+psql todoapp
+>>> \dt
+>>> \d todos
+>>> INSERT INTO todos (description) VALUES ('Do a thing 1');
+>>> INSERT INTO todos (description) VALUES ('Do a thing 2');
+>>> INSERT INTO todos (description) VALUES ('Do a thing 3');
+>>> INSERT INTO todos (description) VALUES ('Do a thing 4');
+>>> select * from todos;
+
+
+------------todoapp/app.py
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
@@ -19,3 +36,17 @@ db.create_all()
 def index():
     return render_template('index.html', data=Todo.query.all()
     )
+    
+    -------todoapp/templates/index.html
+<html>
+  <head>
+    <title>Todo App</title>
+  </head>
+  <body>
+    <ul>
+      {% for d in data %}
+      <li>{{ d.description }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
