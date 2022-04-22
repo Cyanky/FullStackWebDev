@@ -1,0 +1,36 @@
+// Terminal
+xjc@DESKTOP-S6I0E0I:~$ cd ~/class-demos
+xjc@DESKTOP-S6I0E0I:~/class-demos$ mkdir todoapp
+xjc@DESKTOP-S6I0E0I:~/class-demos$ cd todoapp
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ touch app.py
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ code .
+
+// IDE
+// Python
+from flask import Flask, render_template 
+
+app = Flask(__name__)
+
+@app.route('/') //to connect clients with servers
+def index():
+    return render_template('index.html', data=[{
+        'description': 'Todo 1'
+    }, {
+        'description': 'Todo 2'
+    }, {
+        'description': 'Todo 3'
+    }])
+    
+// html // Use Jinja to add non-html file into html 
+<html>
+    <head>
+        <title>Todo App</title>
+    </head>
+    <body>
+        <ul>
+          {% for d in data %}
+          <li>{{ d.description }}</li>
+          {% endfor %}
+        </ul>
+    </body>
+</html>
