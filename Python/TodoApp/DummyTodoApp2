@@ -1,23 +1,21 @@
-xjc@DESKTOP-S6I0E0I:~$ createdb
-createdb: error: database creation failed: ERROR:  permission denied to create database
-xjc@DESKTOP-S6I0E0I:~$ cd class-demos
-xjc@DESKTOP-S6I0E0I:~/class-demos$ cd todoapp
-xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ psql -U xjc -h localhost todoapp
-Password for user xjc:
-psql: error: FATAL:  database "todoapp" does not exist
-xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ sudo su postgres
-[sudo] password for xjc:
-postgres@DESKTOP-S6I0E0I:/home/xjc/class-demos/todoapp$ psql
-psql (12.9 (Ubuntu 12.9-0ubuntu0.20.04.1))
-Type "help" for help.
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
-postgres=# ALTER USER xjc WITH CREATEDB;
-ALTER ROLE
-postgres=# /q
-postgres-# exit
-Use \q to quit.
-postgres-# \q
-postgres@DESKTOP-S6I0E0I:/home/xjc/class-demos/todoapp$ exit
-exit
-xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ createdb
-xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ FLASK_APP=app.py FLASK_DEBUG=true flask run
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://xjc:111070@localhost:5432/todoapp'//***need to add database in postgresql manually
+db = SQLAlchemy(app)
+
+class Todo(db.Model):
+    __tablename__ = 'todos'
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(), nullable=False)
+
+    def __repr__(self):
+        return f'<Todo {self.id} {self.description}>'
+
+db.create_all()
+
+@app.route('/')
+def index():
+    return render_template('index.html', data=Todo.query.all()
+    )
