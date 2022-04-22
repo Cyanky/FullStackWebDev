@@ -1,0 +1,23 @@
+xjc@DESKTOP-S6I0E0I:~$ createdb
+createdb: error: database creation failed: ERROR:  permission denied to create database
+xjc@DESKTOP-S6I0E0I:~$ cd class-demos
+xjc@DESKTOP-S6I0E0I:~/class-demos$ cd todoapp
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ psql -U xjc -h localhost todoapp
+Password for user xjc:
+psql: error: FATAL:  database "todoapp" does not exist
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ sudo su postgres
+[sudo] password for xjc:
+postgres@DESKTOP-S6I0E0I:/home/xjc/class-demos/todoapp$ psql
+psql (12.9 (Ubuntu 12.9-0ubuntu0.20.04.1))
+Type "help" for help.
+
+postgres=# ALTER USER xjc WITH CREATEDB;
+ALTER ROLE
+postgres=# /q
+postgres-# exit
+Use \q to quit.
+postgres-# \q
+postgres@DESKTOP-S6I0E0I:/home/xjc/class-demos/todoapp$ exit
+exit
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ createdb
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ FLASK_APP=app.py FLASK_DEBUG=true flask run
