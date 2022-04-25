@@ -1,0 +1,70 @@
+---------app.py-----------
+order_items = db.Table('order_items',
+    db.Column('order_id', db.Integer, db.ForeignKey('order.id'), primary_key=True),
+    db.Column('product_id', db.Integer, db.ForeignKey('product.id'), primary_key=True)
+)
+
+class Order(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  status = db.Column(db.String(), nullable=False)
+  products = db.relationship('Product', secondary=order_items,
+      backref=db.backref('orders', lazy=True))
+
+class Product(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(), nullable=False)
+ 
+ 
+---------terminal------------
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ python3
+Python 3.8.10 (default, Mar 15 2022, 12:22:08)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> from app import db, Order, Product
+>>> db.create_all()
+>>> order = Order(status='ready')
+>>> product = Product(name='Great widget')
+>>> order.products = [product]
+>>> products.orders = [order]
+
+>>> products.order = [order]
+
+>>> product.orders = [order]
+>>> db.session.add(order)
+>>> db.session.commit()
+>>> exit()
+xjc@DESKTOP-S6I0E0I:~/class-demos/todoapp$ psql todoapp
+psql (12.9 (Ubuntu 12.9-0ubuntu0.20.04.1))
+Type "help" for help.
+
+todoapp=> \dt
+            List of relations
+ Schema |      Name       | Type  | Owner
+--------+-----------------+-------+-------
+ public | alembic_version | table | xjc
+ public | order           | table | xjc
+ public | order_items     | table | xjc
+ public | product         | table | xjc
+ public | todolists       | table | xjc
+ public | todos           | table | xjc
+(6 rows)
+
+todoapp=> select *from "order";
+ id | status
+----+--------
+  1 | ready
+(1 row)
+
+todoapp=> select * from product;
+ id |     name
+----+--------------
+  1 | Great widget
+(1 row)
+
+                 ^
+todoapp=> select * from order_items;
+ order_id | product_id
+----------+------------
+        1 |          1
+(1 row)
