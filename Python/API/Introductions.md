@@ -26,3 +26,24 @@ If you look up the term API, you'll probably find a number of definitions—some
   Spotify API allows users to access a large amount of data related to music artists, albums, and tracks, directly from the Spotify Data Catalogue.
   
   If you check out any of the above links, you'll find some extensive documentation for the relevant API. Creating good API documentation is an important consideration all to itself, and we'll be discussing it in some detail later in this course.
+  
+  
+  ## Client-Server Communication
+  
+  When you got to a bank, the bank teller acts as an intermediary or interface between you and the bank vault. And this is the same type of relationship we see in   
+  client-server communication: The user or client makes a request to the API server, which parses the requests, queries the database, formats a response and then   
+  sends it back.
+
+  
+  Here is the process listed out:
+
+  
+  Client sends a request to the API server
+  
+  The API server parses that request
+  
+  Assuming the request is formatted correctly, the server queries the database for the information or performs the action in the request
+  
+  The server formats the response and sends it back to the client
+  
+  The client renders the response according to its implementation
