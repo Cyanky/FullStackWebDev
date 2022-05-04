@@ -26,7 +26,8 @@ If you look up the term API, you'll probably find a number of definitions—some
   Spotify API allows users to access a large amount of data related to music artists, albums, and tracks, directly from the Spotify Data Catalogue.
   
   If you check out any of the above links, you'll find some extensive documentation for the relevant API. Creating good API documentation is an important consideration all to itself, and we'll be discussing it in some detail later in this course.
-  
+    
+
   
   ## Client-Server Communication
   
@@ -46,4 +47,19 @@ If you look up the term API, you'll probably find a number of definitions—some
   
   The server formats the response and sends it back to the client
   
-  The client renders the response according to its implementation
+  The client renders the response according to its implementation  
+  ## Internet Protocol (IP)   
+is the protocol for sending data from one computer to another across the internet. Each computer must have a unique IP address that identifies it from all other   
+computers connected to the internet. It's likely that you've heard the term IP address before, even if you didn't know exactly what it meant.
+
+  
+  There are many other internet protocols including:
+
+  
+  Transmission Control Protocol (TCP) which is used for data transmission
+  
+  Hypertext Transmission Protocol (HTTP) which is used for transmitting text and hyperlinks
+  
+  File Transfer Protocol (FTP) which is used to transfer files between server and client
+  
+  Our API will transmit data to our client via HTTP so we will primarily focus on that protocol.
