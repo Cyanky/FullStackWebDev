@@ -63,3 +63,30 @@ computers connected to the internet. It's likely that you've heard the term IP a
   File Transfer Protocol (FTP) which is used to transfer files between server and client
   
   Our API will transmit data to our client via HTTP so we will primarily focus on that protocol.
+  
+     
+   ## RESTful API.   
+   REST stands for Representational State Transfer, which is an architectural style introduced by Roy Fielding in 2000.
+
+  
+  Here's a short summary of the REST principles:
+
+  
+  Uniform Interface: Every rest architecture must have a standardized way of accessing and processing data resources. This includes unique resource identifiers   
+  (i.e., unique URLs) and self-descriptive messages in the server response that describe how to process the representation (for instance JSON vs XML) of the data   
+  resource.
+
+  
+  Stateless: Every client request is self-contained in that the server doesn't need to store any application data in order to respond to subsequent requests
+
+  
+  Client-Server: There must be both a client and server in the architecture
+
+  
+  Cacheable & Layered System: Caching and layering increases networking efficiency
+
+  
+  Why RESTful are stateless?
+  
+  It might appear easier to design a server that isn't stateless. There is a reason why RESTful web servers are not allowed to remember anything about the previous   
+  requests that the user has sent. In short, stateless servers make your applications scalable.
