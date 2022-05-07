@@ -27,7 +27,9 @@
   a very small number of quirks implemented.
 
   
-  ## How do browsers determine which mode to use?
+  ## How do browsers determine which mode to use?  
+  
+
   
   For HTML documents, browsers use a DOCTYPE in the beginning of the document to decide whether to handle it in quirks mode or standards mode. To ensure that your   
   page uses full standards mode, make sure that your page has a DOCTYPE like in this example:
@@ -55,4 +57,20 @@
 
   
   In HTML5, the only purpose of the DOCTYPE is to activate full standards mode. Older versions of the HTML standard gave additional meaning to the DOCTYPE, but no   
-  browser has ever used the DOCTYPE for anything other than switching between quirks mode and standards mode.
+  browser has ever used the DOCTYPE for anything other than switching between quirks mode and standards mode.  
+  
+  ![image](https://user-images.githubusercontent.com/91872964/167250508-d3745c7b-3a78-490f-9e5e-cf632fb6596a.png)  
+  All of the HTML syntax that you’ve learned in this lesson will help you create the content of the page, which is always contained inside the <body> tags. The <body> is always visible.
+
+The < head >, on the other hand, is never visible, but the information in it describes the page and links to other files the browser needs to render the website correctly. For instance, the < head > is responsible for:
+
+the document’s title (the text that shows up in browser tabs): < title >About Me< /title >.
+  
+  associated CSS files (for style): < link rel="stylesheet" type="text/css" href="style.css" >.
+  
+  associated JavaScript files (multipurpose scripts to change rendering and behavior): < script src="animations.js" >< /script >.
+  
+  the charset being used (the text's encoding): < meta charset="utf-8" >.
+  
+  keywords, authors, and descriptions (often useful for SEO): < meta name="description" content="This is what my website is all about!" >.
+… and more!
