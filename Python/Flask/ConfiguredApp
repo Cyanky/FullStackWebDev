@@ -1,0 +1,29 @@
+Configured Application
+The below information is for your reference and related information can be found in the Flask documentation. You are expected to use the basic application set up for this course. However, as you build larger applications that utilize multiple environments and configurations (production, development, testing, etc) this knowledge will be helpful for streamlining your development process.
+
+Import additional dependencies. You'll need to import os in order to access the operating system and file structure import os
+Set up your default configuration. When working in development your SECRET_KEY can be hardcoded as shown but for production should come from a secret environment variable. DATABASE is the path for the database file.
+
+import os
+from flask import Flask
+def create_app(test_config=None):
+# create and configure the app
+  app = Flask(__name__, instance_relative_config=True)
+  app.config.from_mapping(
+  SECRET_KEY='dev', 
+  DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+)
+
+If a config.py file is included in the instance folder, use its values to override the default configuration, for instance the SECRET_KEY. You can also enable a testing configuration if it was passed into the create_app function.
+
+if test_config is None:
+ # load the instance config, if it exists, when not testing
+ app.config.from_pyfile('config.py', silent=True)
+else:
+ # load the test config if passed in
+ app.config.from_mapping(test_config)
+Make the instance path directory. The app will create the database file within that directory so it needs to exist.
+try:
+ os.makedirs(app.instance_path)
+except OSError:
+ pass
