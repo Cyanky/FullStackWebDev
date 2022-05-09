@@ -1,0 +1,25 @@
+Curl is a library and command-line tool that completes IP transfers of data using URLs. One quick way to test your API while your API server is running is to run a curl command in another terminal window.
+
+Curl Syntax
+
+curl -X POST http://www.example.com/tasks/
+
+The above is a sample curl request. Every request starts off with the command curl and needs to include a URL. Other parts you see added in are options that you can use to build your request. In the example the -X shortform option (also --request) specifies the request method.
+---------------
+
+CURL Options
+You can find more options by entering the following command in the terminal.
+
+curl --help
+Some frequently used options are:
+
+-X or --request COMMAND
+-d or --data DATA
+-F or --form CONTENT
+-u or --user USER[:PASSWORD]
+-H or --header LINE
+--------------------------------------
+ In the question above, did you find it difficult to read the cURL output? Try piping the output to the jq, a command-line JSON processor, as shown below:
+
+curl https://pokeapi.co/api/v2/move/47 | jq '.'
+The command above will return a nicely formatted JSON.
