@@ -1,0 +1,26 @@
+You've already seen the @app.route decorator used in its most basic form like so:
+
+@app.route('/hello')
+def get_greeting():
+    return jsonify({'message':'Hello, World!'})
+In addition, the @app.route decorator can handle Variable Rules and multiple HTTP methods
+
+---Variable Rules
+In our endpoint naming scheme we follow collection/item/collection. In order to handle that variable item. In order to handle that variability in Flask, you add a <variable_name> within the path argument of the `@app.route` decorator, which is then passed to the function as a keyword argument variable_name.
+
+You can also specify the type of the argument by using <converter:variable_name> syntax.
+
+@app.route('/entrees/<int:entree_id>')
+def retrieve_entree(entree_id):
+ return 'Entree %d' % entree_id
+
+-----HTTP Methods
+By default, the @app.route decorator answers only get requests. In order to enable more request types, pass the method parameter to the decorate including a list of string methods.
+
+@app.route('/hello', methods=['GET', 'POST'])
+def greeting():
+ if request.method == 'POST':
+     return create_greeting()
+ else:
+     return send_greeting()
+OPTIONS requests are automatically implemented and HEAD is also automatically implemented if GET is present.
