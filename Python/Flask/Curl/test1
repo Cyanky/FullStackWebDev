@@ -1,0 +1,9 @@
+The command to return all of the books, which is used multiple times:
+
+curl http://127.0.0.1:5000/books
+To update a single book's rating:
+
+curl http://127.0.0.1:5000/books/8 -X PATCH -H "Content-Type: application/json" -d '{"rating":"1"}'
+To delete a single book
+
+curl -X DELETE http://127.0.0.1:5000/books/8 
