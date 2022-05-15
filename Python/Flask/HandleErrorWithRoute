@@ -1,0 +1,7 @@
+@app.errorhandler(404)
+def not_found(error)://***********need to be clear enough to show what the code means
+    return jsonify({
+        "success": False, 
+        "error": 404,
+        "message": "Not found"
+        }), 404
