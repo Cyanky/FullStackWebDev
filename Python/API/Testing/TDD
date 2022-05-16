@@ -1,0 +1,9 @@
+Test-Driven Development (or TDD) is a software development paradigm used very commonly in production. It is based on a short, rapid development cycle in which tests are written before the executable code and constantly iterated on.
+
+Write test for specific application behavior.
+Run the tests and watch them fail.
+Write code to execute the required behavior.
+Test the code and rewrite as necessary to pass the test
+Refactor your code.
+Repeat - write your next test.
+Often while pair programming, one partner will write the test and the other will write the executable code, after which the partner will switch. This process is helpful for checking assumptions about behavior and making sure all expected behavior is captured.
