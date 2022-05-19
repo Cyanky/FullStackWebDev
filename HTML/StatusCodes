@@ -1,0 +1,16 @@
+HTTP Status Codes
+Two status codes which are important throughout this course are:
+
+401 Unauthorized
+The client must pass authentication before access to this resource is granted. The server cannot validate the identity of the requested party.
+
+403 Forbidden
+The client does not have permission to access the resource. Unlike 401, the server knows who is making the request, but that requesting party has no authorization to access the resource.
+
+For a complete list of status codes, check out the MDN Web Docs
+
+Request types
+GET
+POST
+PATCH
+DELETE
