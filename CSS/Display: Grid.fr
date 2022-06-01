@@ -1,0 +1,43 @@
+## fr vs %
+
+To get started, let’s take a look at how we’d typically think of building a grid in CSS. In the example below, we’re creating a four column grid where each column has an equal width:
+
+<div class="grid">
+  <div class="column"></div>
+  <div class="column"></div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-column-gap: 10px;
+}
+
+If you’ve never seen that repeat() function after the grid-template-columns property then let me introduce you to one of the neatest features of CSS Grid! It’s a shorthand, essentially, allow us to more succinctly describe repeating values. We could have written grid-template-columns: 25% 25% 25% 25%; instead, but it’s cleaner using repeat(), particularly when you have more verbose widths (like a minmax() expression).
+
+The syntax is essentially this:
+
+repeat(number of columns/rows, the column width we want);
+
+There are actually a couple of issues with what we’ve done so far, though.
+
+First, in order to use this neat CSS function, we had to do a tiny bit of math. We had to think to ourselves what is the total width of the grid (100%) divided by the number of columns we want (4), which brings us to 25%. In this instance, the math is pretty darn easy so we don’t have to worry about it but in more complex examples we can completely avoid doing the math and let the browser figure that out for us. We do have calc() available to us, so we could have done repeat(4, calc(100% / 4), but even that’s a little weird, and there is another problem anyway…
+
+The second issue is a problem with overflow. Because we’ve set each column to 25% and a grid-column-gap to 10px then that pushes grid element wider than 100%. It isn’t how you’d expect things to work from just looking at the code above but that’s how percentages work. What we’re really saying with the code above is “set each column to 25% the width of the viewport and have a 10px gap between them.” It’s a subtle difference, but it causes a big issue with layout.
+
+We’ve inadvertently caused some horizontal scrolling here:
+
+
+This is where the fr unit can help us.
+
+The fr unit (a “fraction”) can be used when defining grids like any other CSS length such as %, px or em. Let’s quickly refactor the code above to use this peculiar new value:
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+}
+
+That will look just the same as the example above because in this instance we’re setting each of our four columns to one fraction (which happens to be 1/4 or 25%). But! There’s no overflow on the x-axis anymore because setting each column to 1fr takes that 10px into account automatically and subtracts it from the total width available for each column.
+
