@@ -11,4 +11,5 @@ text-align: center;
 ## For inner container (eg: 'span' elements)
 ```  
 display: inline-flex;
+align-items: center;
 ```
