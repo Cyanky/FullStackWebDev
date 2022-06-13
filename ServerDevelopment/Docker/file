@@ -1,0 +1,31 @@
+Dockerfiles
+Dockerfiles are text files used to define Docker images. They contain commands used to define a source or parent image, copy files to the image, install software on the image, and define the application which will run when the image is invoked.
+Recap
+Dockerfiles define Docker Images. As seen in the example above, a Dockerfile typically starts with a source image upon which you can add layers to build your own custom image. For example, in the video above, the Dockerfile started with the source image python:3.7.2-slim:
+
+FROM python:3.7.2-slim
+
+COPY . /app
+WORKDIR /app
+
+RUN pip install --upgrade pip
+RUN pip install flask
+
+
+ENTRYPOINT [“python”, “app.py”]
+Additional layers in the Dockerfile can be used to install dependencies, like flask in the Dockerfile above. They can also be used to setup a working directory and define an entrypoint for your container. In the example above, the executable is app.py, which will be run when the container starts.
+
+The image below summarizes the process of running a container starting from a Dockerfile:
+
+Docker files are used to build Docker Images. Docker images are run to create Docker Containers
+Docker files are used to build Docker Images. Docker images are run to create Docker Containers
+
+Dockerfile Command Glossary
+In the video example above, you were exposed to several common Dockerfile commands that can be used when creating your own Dockerfiles:
+
+Dockerfile comments start with #.
+FROM defines source image upon which the image will be based.
+COPY copies files to the image.
+WORKDIR defines the working directory for other commands.
+RUN is used to run commands other than the main executable.
+ENTRYPOINT is used to define the main executable.
